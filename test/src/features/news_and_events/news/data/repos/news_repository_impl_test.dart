@@ -84,8 +84,9 @@ void main() {
         'should return ServerError when the call to the remote data source is unsuccesful',
         () async {
           //arrange
-          when(mockNewsRemoteDataSource.getNewsList())
-              .thenThrow(ServerException());
+          when(mockNewsRemoteDataSource.getNewsList()).thenThrow(
+            ServerException(),
+          );
           //act
           final result = await repository.getNewsList();
           //assert
@@ -136,8 +137,11 @@ void main() {
         'should return CacheError when the call to the local data source is unsuccesful',
         () async {
           //arrange
-          when(mockNewsLocalDataSource.getLastNewsList())
-              .thenThrow(CacheException());
+          when(
+            mockNewsLocalDataSource.getLastNewsList(),
+          ).thenThrow(
+            CacheException(),
+          );
           //act
           final result = await repository.getNewsList();
           //assert
