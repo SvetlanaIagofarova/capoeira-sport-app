@@ -1,4 +1,6 @@
 import 'package:capoeirasport_project/core/common/result.dart';
+import 'package:capoeirasport_project/core/common/usecase.dart';
+import 'package:capoeirasport_project/core/exceptions/error.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/repos/event_repository.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/usecases/get_event_list.dart';
@@ -15,7 +17,7 @@ void main() {
     const Event(id: 2, title: 'title2', imgUrl: 'imgUrl2'),
   ];
 
-  provideDummy<Result<List<Event>, Exception>>(
+  provideDummy<Result<List<Event>, Error>>(
     Success(value: fakeEventList),
   );
   test(
@@ -31,7 +33,7 @@ void main() {
         (_) async => Success(value: fakeEventList),
       );
       //act
-      final result = await usecase.loadList();
+      final result = await usecase(NoParams());
       //assert
       // UseCase should simply return whatever was returned from the Repository
       expect(

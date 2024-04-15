@@ -1,4 +1,6 @@
 import 'package:capoeirasport_project/core/common/result.dart';
+import 'package:capoeirasport_project/core/common/usecase.dart';
+import 'package:capoeirasport_project/core/exceptions/error.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/repos/news_repository.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/usecases/get_news_list.dart';
@@ -14,7 +16,7 @@ void main() {
     const News(id: 1, title: 'title1', date: 'date1'),
     const News(id: 2, title: 'title2', date: 'date2'),
   ];
-  provideDummy<Result<List<News>, Exception>>(
+  provideDummy<Result<List<News>, Error>>(
     Success(value: fakeNewsList),
   );
   test(
@@ -22,7 +24,7 @@ void main() {
     () async {
       //arrange
       final mockNewsRepository = MockNewsRepository();
-      final GetNewsList usecase = GetNewsList(mockNewsRepository);
+      final usecase = GetNewsList(mockNewsRepository);
 
       when(
         mockNewsRepository.getNewsList(),
@@ -30,7 +32,7 @@ void main() {
         (_) async => Success(value: fakeNewsList),
       );
       //act
-      final result = await usecase.loadList();
+      final result = await usecase(NoParams());
       //assert
       // UseCase should simply return whatever was returned from the Repository
       expect(
