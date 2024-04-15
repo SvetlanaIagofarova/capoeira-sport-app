@@ -1,8 +1,8 @@
+import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart';
 import 'package:capoeirasport_project/core/common/result.dart';
 import 'package:capoeirasport_project/core/exceptions/exception.dart';
 import 'package:capoeirasport_project/core/exceptions/error.dart';
 import 'package:capoeirasport_project/core/network/network_info.dart';
-import 'package:capoeirasport_project/src/features/news_and_events/news/data/datasources/news_local_data_sources.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/datasources/news_remote_data_sources.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/models/news_model.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart';
@@ -10,7 +10,7 @@ import 'package:capoeirasport_project/src/features/news_and_events/news/domain/r
 
 class NewsRepositoryImpl implements NewsRepository {
   final NewsRemoteDataSource remoteDataSource;
-  final NewsLocalDataSource localDataSource;
+  final CommonLocalDataSource<News> localDataSource;
   final NetworkInfo networkInfo;
 
   NewsRepositoryImpl({
@@ -24,7 +24,7 @@ class NewsRepositoryImpl implements NewsRepository {
     if (await networkInfo.isConnected) {
       try {
         final List<News> remoteNewsList = await remoteDataSource.getNewsList();
-        localDataSource.cacheNewsList(remoteNewsList as List<NewsModel>);
+        localDataSource.cacheTypeModelList(remoteNewsList as List<NewsModel>);
         return Success(value: remoteNewsList);
       } on ServerException {
         return Failure(
@@ -33,7 +33,7 @@ class NewsRepositoryImpl implements NewsRepository {
       }
     } else {
       try {
-        final List<News> localNewsList = await localDataSource.getLastNewsList();
+        final List<News> localNewsList = await localDataSource.getLastTypeModelList();
         return Success(value: localNewsList);
       } on CacheException {
         return Failure(

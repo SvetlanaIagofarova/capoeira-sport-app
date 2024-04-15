@@ -1,6 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+part 'news.g.dart';
+
 @HiveType(typeId: 0)
 class News extends Equatable {
   @HiveField(0)

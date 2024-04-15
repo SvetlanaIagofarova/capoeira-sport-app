@@ -1,8 +1,8 @@
+import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart';
 import 'package:capoeirasport_project/core/common/result.dart';
 import 'package:capoeirasport_project/core/exceptions/error.dart';
 import 'package:capoeirasport_project/core/exceptions/exception.dart';
 import 'package:capoeirasport_project/core/network/network_info.dart';
-import 'package:capoeirasport_project/src/features/news_and_events/news/data/datasources/news_local_data_sources.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/datasources/news_remote_data_sources.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/models/news_model.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/repos/news_repository_impl.dart';
@@ -14,17 +14,17 @@ import 'package:mockito/mockito.dart';
 import 'news_repository_impl_test.mocks.dart';
 
 @GenerateMocks([NewsRemoteDataSource])
-@GenerateMocks([NewsLocalDataSource])
+@GenerateMocks([CommonLocalDataSource<News>])
 @GenerateMocks([NetworkInfo])
 void main() {
   late NewsRepositoryImpl repository;
   late MockNewsRemoteDataSource mockNewsRemoteDataSource;
-  late MockNewsLocalDataSource mockNewsLocalDataSource;
+  late MockCommonLocalDataSource<News> mockNewsLocalDataSource;
   late MockNetworkInfo mockNetworkInfo;
 
   setUp(() {
     mockNewsRemoteDataSource = MockNewsRemoteDataSource();
-    mockNewsLocalDataSource = MockNewsLocalDataSource();
+    mockNewsLocalDataSource = MockCommonLocalDataSource();
     mockNetworkInfo = MockNetworkInfo();
     repository = NewsRepositoryImpl(
       remoteDataSource: mockNewsRemoteDataSource,
@@ -76,7 +76,7 @@ void main() {
           verify(mockNewsRemoteDataSource.getNewsList());
           verify(
             mockNewsLocalDataSource
-                .cacheNewsList(fakeNewsList as List<NewsModel>),
+                .cacheTypeModelList(fakeNewsList as List<NewsModel>),
           );
         },
       );
@@ -118,13 +118,13 @@ void main() {
         'should return last locally cached data when the cached data is present',
         () async {
           //arrange
-          when(mockNewsLocalDataSource.getLastNewsList())
+          when(mockNewsLocalDataSource.getLastTypeModelList())
               .thenAnswer((_) async => fakeNewsListModel);
           //act
           final result = await repository.getNewsList();
           //assert
           verifyNoMoreInteractions(mockNewsRemoteDataSource);
-          verify(mockNewsLocalDataSource.getLastNewsList());
+          verify(mockNewsLocalDataSource.getLastTypeModelList());
           expect(
             result,
             equals(
@@ -138,7 +138,7 @@ void main() {
         () async {
           //arrange
           when(
-            mockNewsLocalDataSource.getLastNewsList(),
+            mockNewsLocalDataSource.getLastTypeModelList(),
           ).thenThrow(
             CacheException(),
           );
@@ -146,7 +146,7 @@ void main() {
           final result = await repository.getNewsList();
           //assert
           verifyNoMoreInteractions(mockNewsRemoteDataSource);
-          verify(mockNewsLocalDataSource.getLastNewsList());
+          verify(mockNewsLocalDataSource.getLastTypeModelList());
           expect(
             result,
             equals(

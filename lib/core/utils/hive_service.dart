@@ -1,4 +1,6 @@
 import 'package:capoeirasport_project/src/consts/hive_consts.dart';
+import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart';
+import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 
@@ -14,14 +16,13 @@ class HiveService {
 
     boxes = <BoxType, Box<dynamic>>{
       BoxType.newsList: await Hive.openBox(HiveConsts.newsListBox),
-      BoxType.eventsList:
+      BoxType.eventList:
           await Hive.openBox(HiveConsts.eventListBox),
     };
   }
 
-  List<T> getAllThings<T>({required BoxType boxType}) {
-    // return boxes[boxType]?.values.toList() as List<T>;
-    return boxes[boxType]?.values.map((v) => v as T).toList() ?? [];
+  List<T>? getAllThings<T>({required BoxType boxType}) {
+    return boxes[boxType]?.values.map((v) => v as T).toList();
   }
 
   T getThing<T>({
@@ -58,12 +59,12 @@ class HiveService {
 
 Future<void> _registerHiveAdapters() async {
   await Hive.initFlutter();
-  // Hive
-    // ..registerAdapter(FreezerImplAdapter())
-    // ..registerAdapter(UserImplAdapter());
+  Hive
+    ..registerAdapter(NewsAdapter())
+    ..registerAdapter(EventAdapter());
 }
 
 enum BoxType {
   newsList,
-  eventsList,
+  eventList,
 }

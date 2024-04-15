@@ -5,9 +5,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:capoeirasport_project/core/network/network_info.dart' as _i6;
-import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_local_data_source.dart'
+import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart'
     as _i5;
+import 'package:capoeirasport_project/core/network/network_info.dart' as _i7;
+import 'package:capoeirasport_project/core/utils/hive_service.dart' as _i6;
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_remote_data_sources.dart'
     as _i2;
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/models/event_model.dart'
@@ -46,30 +47,36 @@ class MockEventRemoteDataSource extends _i1.Mock
       ) as _i3.Future<List<_i4.EventModel>>);
 }
 
-/// A class which mocks [EventLocalDataSource].
+/// A class which mocks [CommonLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockEventLocalDataSource extends _i1.Mock
-    implements _i5.EventLocalDataSource {
-  MockEventLocalDataSource() {
+class MockCommonLocalDataSource<TypeModel> extends _i1.Mock
+    implements _i5.CommonLocalDataSource<TypeModel> {
+  MockCommonLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.EventModel>> getLastEventList() => (super.noSuchMethod(
-        Invocation.method(
-          #getLastEventList,
-          [],
-        ),
-        returnValue: _i3.Future<List<_i4.EventModel>>.value(<_i4.EventModel>[]),
-      ) as _i3.Future<List<_i4.EventModel>>);
+  _i6.BoxType get boxType => (super.noSuchMethod(
+        Invocation.getter(#boxType),
+        returnValue: _i6.BoxType.newsList,
+      ) as _i6.BoxType);
 
   @override
-  _i3.Future<void> cacheEventList(List<_i4.EventModel>? eventListToCache) =>
+  _i3.Future<List<TypeModel>> getLastTypeModelList() => (super.noSuchMethod(
+        Invocation.method(
+          #getLastTypeModelList,
+          [],
+        ),
+        returnValue: _i3.Future<List<TypeModel>>.value(<TypeModel>[]),
+      ) as _i3.Future<List<TypeModel>>);
+
+  @override
+  _i3.Future<void> cacheTypeModelList(List<TypeModel>? typeModelListToCache) =>
       (super.noSuchMethod(
         Invocation.method(
-          #cacheEventList,
-          [eventListToCache],
+          #cacheTypeModelList,
+          [typeModelListToCache],
         ),
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
@@ -79,7 +86,7 @@ class MockEventLocalDataSource extends _i1.Mock
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i6.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i7.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }

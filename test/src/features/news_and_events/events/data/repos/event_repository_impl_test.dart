@@ -1,8 +1,8 @@
+import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart';
 import 'package:capoeirasport_project/core/common/result.dart';
 import 'package:capoeirasport_project/core/exceptions/error.dart';
 import 'package:capoeirasport_project/core/exceptions/exception.dart';
 import 'package:capoeirasport_project/core/network/network_info.dart';
-import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_local_data_source.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_remote_data_sources.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/models/event_model.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/repos/event_repository_impl.dart';
@@ -14,17 +14,17 @@ import 'package:mockito/mockito.dart';
 import 'event_repository_impl_test.mocks.dart';
 
 @GenerateMocks([EventRemoteDataSource])
-@GenerateMocks([EventLocalDataSource])
+@GenerateMocks([CommonLocalDataSource<Event>])
 @GenerateMocks([NetworkInfo])
 void main() {
   late EventRepositoryImpl repository;
   late EventRemoteDataSource mockEventRemoteDataSource;
-  late EventLocalDataSource mockEventLocalDataSource;
+  late CommonLocalDataSource<Event> mockEventLocalDataSource;
   late NetworkInfo mockNetworkInfo;
 
   setUp(() {
     mockEventRemoteDataSource = MockEventRemoteDataSource();
-    mockEventLocalDataSource = MockEventLocalDataSource();
+    mockEventLocalDataSource = MockCommonLocalDataSource<Event>();
     mockNetworkInfo = MockNetworkInfo();
     repository = EventRepositoryImpl(
       remoteDataSource: mockEventRemoteDataSource,
@@ -76,7 +76,7 @@ void main() {
           verify(mockEventRemoteDataSource.getEventList());
           verify(
             mockEventLocalDataSource
-                .cacheEventList(fakeEventList as List<EventModel>),
+                .cacheTypeModelList(fakeEventList as List<EventModel>),
           );
         },
       );
@@ -118,13 +118,13 @@ void main() {
         'should return last locally cached data when the cached data is present',
         () async {
           //arrange
-          when(mockEventLocalDataSource.getLastEventList())
+          when(mockEventLocalDataSource.getLastTypeModelList())
               .thenAnswer((_) async => fakeEventListModel);
           //act
           final result = await repository.getEventList();
           //assert
           verifyNoMoreInteractions(mockEventRemoteDataSource);
-          verify(mockEventLocalDataSource.getLastEventList());
+          verify(mockEventLocalDataSource.getLastTypeModelList());
           expect(
             result,
             equals(
@@ -138,7 +138,7 @@ void main() {
         () async {
           //arrange
           when(
-            mockEventLocalDataSource.getLastEventList(),
+            mockEventLocalDataSource.getLastTypeModelList(),
           ).thenThrow(
             CacheException(),
           );
@@ -146,7 +146,7 @@ void main() {
           final result = await repository.getEventList();
           //assert
           verifyNoMoreInteractions(mockEventRemoteDataSource);
-          verify(mockEventLocalDataSource.getLastEventList());
+          verify(mockEventLocalDataSource.getLastTypeModelList());
           expect(
             result,
             equals(
