@@ -5,7 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:capoeirasport_project/core/utils/network_info.dart' as _i6;
+import 'package:capoeirasport_project/core/network/network_info.dart' as _i6;
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/datasources/news_local_data_sources.dart'
     as _i5;
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/datasources/news_remote_data_sources.dart'

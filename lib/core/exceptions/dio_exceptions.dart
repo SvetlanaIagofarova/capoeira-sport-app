@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:capoeirasport_project/src/constants/api_exceptions_consts.dart';
+import 'package:capoeirasport_project/src/consts/api_exceptions_consts.dart';
 
 class DioExceptions implements Exception {
   late String errorMessage;

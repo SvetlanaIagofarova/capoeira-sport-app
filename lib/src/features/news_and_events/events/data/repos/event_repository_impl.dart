@@ -1,7 +1,7 @@
 import 'package:capoeirasport_project/core/common/result.dart';
 import 'package:capoeirasport_project/core/exceptions/error.dart';
 import 'package:capoeirasport_project/core/exceptions/exception.dart';
-import 'package:capoeirasport_project/core/utils/network_info.dart';
+import 'package:capoeirasport_project/core/network/network_info.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_local_data_source.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_remote_data_sources.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/models/event_model.dart';
