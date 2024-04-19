@@ -1,5 +1,9 @@
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'event_model.g.dart';
+
+@JsonSerializable()
 class EventModel extends Event {
   const EventModel({
     required super.id,
@@ -7,11 +11,8 @@ class EventModel extends Event {
     required super.imgUrl,
   });
 
-  factory EventModel.fromJson(Map<String, dynamic> json) {
-    return EventModel(
-      id: json['Id'],
-      title: json['Title'],
-      imgUrl: json['imgUrl'],
-    );
-  }
+  factory EventModel.fromJson(Map<String, dynamic> json) =>
+      _$EventModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$EventModelToJson(this);
 }

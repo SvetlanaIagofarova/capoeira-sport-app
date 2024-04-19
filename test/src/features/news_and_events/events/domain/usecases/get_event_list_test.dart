@@ -1,6 +1,6 @@
 import 'package:capoeirasport_project/core/common/result.dart';
 import 'package:capoeirasport_project/core/common/usecase.dart';
-import 'package:capoeirasport_project/core/exceptions/error.dart';
+import 'package:capoeirasport_project/core/network/exceptions/error.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/repos/event_repository.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/usecases/get_event_list.dart';

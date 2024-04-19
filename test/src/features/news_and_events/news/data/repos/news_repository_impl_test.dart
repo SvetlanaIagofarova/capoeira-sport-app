@@ -1,9 +1,9 @@
 import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart';
+import 'package:capoeirasport_project/core/common/repository/common_remote_repository.dart';
 import 'package:capoeirasport_project/core/common/result.dart';
-import 'package:capoeirasport_project/core/exceptions/error.dart';
-import 'package:capoeirasport_project/core/exceptions/exception.dart';
+import 'package:capoeirasport_project/core/network/exceptions/error.dart';
+import 'package:capoeirasport_project/core/network/exceptions/exception.dart';
 import 'package:capoeirasport_project/core/network/network_info.dart';
-import 'package:capoeirasport_project/src/features/news_and_events/news/data/datasources/news_remote_data_sources.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/models/news_model.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/repos/news_repository_impl.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart';
@@ -13,17 +13,17 @@ import 'package:mockito/mockito.dart';
 
 import 'news_repository_impl_test.mocks.dart';
 
-@GenerateMocks([NewsRemoteDataSource])
+@GenerateMocks([CommonRemoteRepository<NewsModel>])
 @GenerateMocks([CommonLocalDataSource<News>])
 @GenerateMocks([NetworkInfo])
 void main() {
   late NewsRepositoryImpl repository;
-  late MockNewsRemoteDataSource mockNewsRemoteDataSource;
+  late MockCommonRemoteRepository<NewsModel> mockNewsRemoteDataSource;
   late MockCommonLocalDataSource<News> mockNewsLocalDataSource;
   late MockNetworkInfo mockNetworkInfo;
 
   setUp(() {
-    mockNewsRemoteDataSource = MockNewsRemoteDataSource();
+    mockNewsRemoteDataSource = MockCommonRemoteRepository<NewsModel>();
     mockNewsLocalDataSource = MockCommonLocalDataSource();
     mockNetworkInfo = MockNetworkInfo();
     repository = NewsRepositoryImpl(
@@ -50,12 +50,12 @@ void main() {
         'should return remote data when the call to the remote data source is succesful',
         () async {
           //arrange
-          when(mockNewsRemoteDataSource.getNewsList())
+          when(mockNewsRemoteDataSource.getListOfThings())
               .thenAnswer((_) async => fakeNewsListModel);
           //act
           final result = await repository.getNewsList();
           //assert
-          verify(mockNewsRemoteDataSource.getNewsList());
+          verify(mockNewsRemoteDataSource.getListOfThings());
           expect(
             result,
             equals(
@@ -68,12 +68,12 @@ void main() {
         'should cache the data locally when the call to the remote data source is succesful',
         () async {
           //arrange
-          when(mockNewsRemoteDataSource.getNewsList())
+          when(mockNewsRemoteDataSource.getListOfThings())
               .thenAnswer((_) async => fakeNewsListModel);
           //act
           await repository.getNewsList();
           //assert
-          verify(mockNewsRemoteDataSource.getNewsList());
+          verify(mockNewsRemoteDataSource.getListOfThings());
           verify(
             mockNewsLocalDataSource
                 .cacheTypeModelList(fakeNewsList as List<NewsModel>),
@@ -84,13 +84,13 @@ void main() {
         'should return ServerError when the call to the remote data source is unsuccesful',
         () async {
           //arrange
-          when(mockNewsRemoteDataSource.getNewsList()).thenThrow(
+          when(mockNewsRemoteDataSource.getListOfThings()).thenThrow(
             ServerException(),
           );
           //act
           final result = await repository.getNewsList();
           //assert
-          verify(mockNewsRemoteDataSource.getNewsList());
+          verify(mockNewsRemoteDataSource.getListOfThings());
           verifyNoMoreInteractions(mockNewsLocalDataSource);
           expect(
             result,

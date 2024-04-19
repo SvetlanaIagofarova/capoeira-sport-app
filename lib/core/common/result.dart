@@ -1,4 +1,4 @@
-import 'package:capoeirasport_project/core/exceptions/error.dart';
+import 'package:capoeirasport_project/core/network/exceptions/error.dart';
 import 'package:equatable/equatable.dart';
 
 sealed class Result<S, E extends Error> extends Equatable {

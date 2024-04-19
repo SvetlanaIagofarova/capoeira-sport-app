@@ -1,9 +1,9 @@
 import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart';
+import 'package:capoeirasport_project/core/common/repository/common_remote_repository.dart';
 import 'package:capoeirasport_project/core/common/result.dart';
-import 'package:capoeirasport_project/core/exceptions/error.dart';
-import 'package:capoeirasport_project/core/exceptions/exception.dart';
+import 'package:capoeirasport_project/core/network/exceptions/error.dart';
+import 'package:capoeirasport_project/core/network/exceptions/exception.dart';
 import 'package:capoeirasport_project/core/network/network_info.dart';
-import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_remote_data_sources.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/models/event_model.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/repos/event_repository_impl.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart';
@@ -13,17 +13,17 @@ import 'package:mockito/mockito.dart';
 
 import 'event_repository_impl_test.mocks.dart';
 
-@GenerateMocks([EventRemoteDataSource])
+@GenerateMocks([CommonRemoteRepository])
 @GenerateMocks([CommonLocalDataSource<Event>])
 @GenerateMocks([NetworkInfo])
 void main() {
   late EventRepositoryImpl repository;
-  late EventRemoteDataSource mockEventRemoteDataSource;
+  late CommonRemoteRepository<EventModel> mockEventRemoteDataSource;
   late CommonLocalDataSource<Event> mockEventLocalDataSource;
   late NetworkInfo mockNetworkInfo;
 
   setUp(() {
-    mockEventRemoteDataSource = MockEventRemoteDataSource();
+    mockEventRemoteDataSource = MockCommonRemoteRepository();
     mockEventLocalDataSource = MockCommonLocalDataSource<Event>();
     mockNetworkInfo = MockNetworkInfo();
     repository = EventRepositoryImpl(
@@ -50,12 +50,13 @@ void main() {
         'should return remote data when the call to the remote data source is succesful',
         () async {
           //arrange
-          when(mockEventRemoteDataSource.getEventList())
-              .thenAnswer((_) async => fakeEventListModel);
+          when(
+            mockEventRemoteDataSource.getListOfThings(),
+          ).thenAnswer((_) async => fakeEventListModel);
           //act
           final result = await repository.getEventList();
           //assert
-          verify(mockEventRemoteDataSource.getEventList());
+          verify(mockEventRemoteDataSource.getListOfThings());
           expect(
             result,
             equals(
@@ -68,12 +69,13 @@ void main() {
         'should cache the data locally when the call to the remote data source is succesful',
         () async {
           //arrange
-          when(mockEventRemoteDataSource.getEventList())
-              .thenAnswer((_) async => fakeEventListModel);
+          when(
+            mockEventRemoteDataSource.getListOfThings(),
+          ).thenAnswer((_) async => fakeEventListModel);
           //act
           await repository.getEventList();
           //assert
-          verify(mockEventRemoteDataSource.getEventList());
+          verify(mockEventRemoteDataSource.getListOfThings());
           verify(
             mockEventLocalDataSource
                 .cacheTypeModelList(fakeEventList as List<EventModel>),
@@ -84,13 +86,15 @@ void main() {
         'should return ServerError when the call to the remote data source is unsuccesful',
         () async {
           //arrange
-          when(mockEventRemoteDataSource.getEventList()).thenThrow(
+          when(
+            mockEventRemoteDataSource.getListOfThings(),
+          ).thenThrow(
             ServerException(),
           );
           //act
           final result = await repository.getEventList();
           //assert
-          verify(mockEventRemoteDataSource.getEventList());
+          verify(mockEventRemoteDataSource.getListOfThings());
           verifyNoMoreInteractions(mockEventLocalDataSource);
           expect(
             result,

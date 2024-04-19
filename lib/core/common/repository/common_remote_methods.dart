@@ -1,4 +1,4 @@
-abstract interface class CommonMethodsRepository<T> {
+abstract interface class CommonMethodsRemoteRepository<T> {
   Future<List<T>> getListOfThings();
 
   Future<T> getThing({

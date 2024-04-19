@@ -1,10 +1,12 @@
-import 'package:dio/dio.dart';
 import 'package:capoeirasport_project/src/consts/api_exceptions_consts.dart';
+import 'package:dio/dio.dart';
 
-class DioExceptions implements Exception {
+class ServerException implements Exception {
   late String errorMessage;
 
-  DioExceptions.fromDioException(DioException dioEsception) {
+  ServerException();
+
+  ServerException.fromDioException(DioException dioEsception) {
     switch (dioEsception.type) {
       case DioExceptionType.cancel:
         errorMessage = ApiExceptionsConsts.exceptionCancel;
@@ -52,3 +54,5 @@ class DioExceptions implements Exception {
   @override
   String toString() => errorMessage;
 }
+
+class CacheException implements Exception {}

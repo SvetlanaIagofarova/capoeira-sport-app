@@ -6,14 +6,14 @@
 import 'dart:async' as _i3;
 
 import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart'
-    as _i5;
-import 'package:capoeirasport_project/core/network/network_info.dart' as _i7;
-import 'package:capoeirasport_project/core/utils/hive_service.dart' as _i6;
-import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_remote_data_sources.dart'
-    as _i2;
-import 'package:capoeirasport_project/src/features/news_and_events/events/data/models/event_model.dart'
+    as _i6;
+import 'package:capoeirasport_project/core/common/repository/common_remote_repository.dart'
     as _i4;
+import 'package:capoeirasport_project/core/network/dio_client.dart' as _i2;
+import 'package:capoeirasport_project/core/network/network_info.dart' as _i8;
+import 'package:capoeirasport_project/core/utils/hive_service.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:mockito/src/dummies.dart' as _i5;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -28,39 +28,209 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [EventRemoteDataSource].
+class _FakeDioClient_0 extends _i1.SmartFake implements _i2.DioClient {
+  _FakeDioClient_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeFuture_1<T1> extends _i1.SmartFake implements _i3.Future<T1> {
+  _FakeFuture_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+/// A class which mocks [CommonRemoteRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockEventRemoteDataSource extends _i1.Mock
-    implements _i2.EventRemoteDataSource {
-  MockEventRemoteDataSource() {
+class MockCommonRemoteRepository<T> extends _i1.Mock
+    implements _i4.CommonRemoteRepository<T> {
+  MockCommonRemoteRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<List<_i4.EventModel>> getEventList() => (super.noSuchMethod(
+  _i2.DioClient get client => (super.noSuchMethod(
+        Invocation.getter(#client),
+        returnValue: _FakeDioClient_0(
+          this,
+          Invocation.getter(#client),
+        ),
+      ) as _i2.DioClient);
+
+  @override
+  String get path => (super.noSuchMethod(
+        Invocation.getter(#path),
+        returnValue: _i5.dummyValue<String>(
+          this,
+          Invocation.getter(#path),
+        ),
+      ) as String);
+
+  @override
+  T fromJson(Map<String, dynamic>? json) => (super.noSuchMethod(
         Invocation.method(
-          #getEventList,
+          #fromJson,
+          [json],
+        ),
+        returnValue: _i5.dummyValue<T>(
+          this,
+          Invocation.method(
+            #fromJson,
+            [json],
+          ),
+        ),
+      ) as T);
+
+  @override
+  Map<String, dynamic> toJson(T? body) => (super.noSuchMethod(
+        Invocation.method(
+          #toJson,
+          [body],
+        ),
+        returnValue: <String, dynamic>{},
+      ) as Map<String, dynamic>);
+
+  @override
+  _i3.Future<List<T>> getListOfThings() => (super.noSuchMethod(
+        Invocation.method(
+          #getListOfThings,
           [],
         ),
-        returnValue: _i3.Future<List<_i4.EventModel>>.value(<_i4.EventModel>[]),
-      ) as _i3.Future<List<_i4.EventModel>>);
+        returnValue: _i3.Future<List<T>>.value(<T>[]),
+      ) as _i3.Future<List<T>>);
+
+  @override
+  _i3.Future<T> getThing({required int? id}) => (super.noSuchMethod(
+        Invocation.method(
+          #getThing,
+          [],
+          {#id: id},
+        ),
+        returnValue: _i5.ifNotNull(
+              _i5.dummyValueOrNull<T>(
+                this,
+                Invocation.method(
+                  #getThing,
+                  [],
+                  {#id: id},
+                ),
+              ),
+              (T v) => _i3.Future<T>.value(v),
+            ) ??
+            _FakeFuture_1<T>(
+              this,
+              Invocation.method(
+                #getThing,
+                [],
+                {#id: id},
+              ),
+            ),
+      ) as _i3.Future<T>);
+
+  @override
+  _i3.Future<T> postThing({required T? body}) => (super.noSuchMethod(
+        Invocation.method(
+          #postThing,
+          [],
+          {#body: body},
+        ),
+        returnValue: _i5.ifNotNull(
+              _i5.dummyValueOrNull<T>(
+                this,
+                Invocation.method(
+                  #postThing,
+                  [],
+                  {#body: body},
+                ),
+              ),
+              (T v) => _i3.Future<T>.value(v),
+            ) ??
+            _FakeFuture_1<T>(
+              this,
+              Invocation.method(
+                #postThing,
+                [],
+                {#body: body},
+              ),
+            ),
+      ) as _i3.Future<T>);
+
+  @override
+  _i3.Future<T> putThing({
+    required int? id,
+    required T? body,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #putThing,
+          [],
+          {
+            #id: id,
+            #body: body,
+          },
+        ),
+        returnValue: _i5.ifNotNull(
+              _i5.dummyValueOrNull<T>(
+                this,
+                Invocation.method(
+                  #putThing,
+                  [],
+                  {
+                    #id: id,
+                    #body: body,
+                  },
+                ),
+              ),
+              (T v) => _i3.Future<T>.value(v),
+            ) ??
+            _FakeFuture_1<T>(
+              this,
+              Invocation.method(
+                #putThing,
+                [],
+                {
+                  #id: id,
+                  #body: body,
+                },
+              ),
+            ),
+      ) as _i3.Future<T>);
+
+  @override
+  _i3.Future<void> deleteThing({required int? id}) => (super.noSuchMethod(
+        Invocation.method(
+          #deleteThing,
+          [],
+          {#id: id},
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }
 
 /// A class which mocks [CommonLocalDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCommonLocalDataSource<TypeModel> extends _i1.Mock
-    implements _i5.CommonLocalDataSource<TypeModel> {
+    implements _i6.CommonLocalDataSource<TypeModel> {
   MockCommonLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i6.BoxType get boxType => (super.noSuchMethod(
+  _i7.BoxType get boxType => (super.noSuchMethod(
         Invocation.getter(#boxType),
-        returnValue: _i6.BoxType.newsList,
-      ) as _i6.BoxType);
+        returnValue: _i7.BoxType.newsList,
+      ) as _i7.BoxType);
 
   @override
   _i3.Future<List<TypeModel>> getLastTypeModelList() => (super.noSuchMethod(
@@ -86,7 +256,7 @@ class MockCommonLocalDataSource<TypeModel> extends _i1.Mock
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i7.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i8.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }

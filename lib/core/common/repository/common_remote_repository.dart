@@ -1,9 +1,14 @@
-import 'package:capoeirasport_project/core/common/repository/common_methods.dart';
-import 'package:capoeirasport_project/core/exceptions/dio_exceptions.dart';
+import 'package:capoeirasport_project/core/common/repository/common_remote_methods.dart';
+import 'package:capoeirasport_project/core/network/exceptions/exception.dart';
 import 'package:capoeirasport_project/core/network/dio_client.dart';
 import 'package:dio/dio.dart';
 
-abstract class CommonRepository<T> implements CommonMethodsRepository<T> {
+abstract class CommonRemoteRepository<T>
+    implements CommonMethodsRemoteRepository<T> {
+  final DioClient client;
+
+  CommonRemoteRepository({required this.client});
+
   T fromJson(Map<String, dynamic> json);
 
   Map<String, dynamic> toJson(T body);
@@ -13,12 +18,12 @@ abstract class CommonRepository<T> implements CommonMethodsRepository<T> {
   @override
   Future<List<T>> getListOfThings() async {
     try {
-      final response = await DioClient.instance.get(
+      final response = await client.get(
         path,
       );
       return (response as List).map((e) => fromJson(e)).toList();
     } on DioException catch (e) {
-      var error = DioExceptions.fromDioException(e);
+      var error = ServerException.fromDioException(e);
       throw error.errorMessage;
     }
   }
@@ -28,12 +33,12 @@ abstract class CommonRepository<T> implements CommonMethodsRepository<T> {
     required int id,
   }) async {
     try {
-      final response = await DioClient.instance.get(
+      final response = await client.get(
         '$path/$id',
       );
       return fromJson(response);
     } on DioException catch (e) {
-      var error = DioExceptions.fromDioException(e);
+      var error = ServerException.fromDioException(e);
       throw error.errorMessage;
     }
   }
@@ -43,13 +48,13 @@ abstract class CommonRepository<T> implements CommonMethodsRepository<T> {
     required T body,
   }) async {
     try {
-      final response = await DioClient.instance.post(
+      final response = await client.post(
         path,
         data: toJson(body),
       );
       return fromJson(response);
     } on DioException catch (e) {
-      var error = DioExceptions.fromDioException(e);
+      var error = ServerException.fromDioException(e);
       throw error.errorMessage;
     }
   }
@@ -60,13 +65,13 @@ abstract class CommonRepository<T> implements CommonMethodsRepository<T> {
     required T body,
   }) async {
     try {
-      final response = await DioClient.instance.put(
+      final response = await client.put(
         '$path/$id',
         data: toJson(body),
       );
       return fromJson(response);
     } on DioException catch (e) {
-      var error = DioExceptions.fromDioException(e);
+      var error = ServerException.fromDioException(e);
       throw error.errorMessage;
     }
   }
@@ -74,11 +79,11 @@ abstract class CommonRepository<T> implements CommonMethodsRepository<T> {
   @override
   Future<void> deleteThing({required int id}) async {
     try {
-      await DioClient.instance.delete(
+      await client.delete(
         '$path/$id',
       );
     } on DioException catch (e) {
-      var error = DioExceptions.fromDioException(e);
+      var error = ServerException.fromDioException(e);
       throw error.errorMessage;
     }
   }

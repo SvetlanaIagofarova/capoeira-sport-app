@@ -1,5 +1,9 @@
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'news_model.g.dart';
+
+@JsonSerializable()
 class NewsModel extends News {
   const NewsModel({
     required super.id,
@@ -7,11 +11,8 @@ class NewsModel extends News {
     required super.date,
   });
 
-  factory NewsModel.fromJson(Map<String, dynamic> json) {
-    return NewsModel(
-      id: json['Id'],
-      title: json['Title'],
-      date: json['Date'],
-    );
-  }
+  factory NewsModel.fromJson(Map<String, dynamic> json) =>
+      _$NewsModelFromJson(json);
+
+  Map<String, dynamic> toJson() => _$NewsModelToJson(this);
 }

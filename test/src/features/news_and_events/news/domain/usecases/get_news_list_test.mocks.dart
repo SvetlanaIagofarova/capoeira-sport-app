@@ -6,7 +6,8 @@
 import 'dart:async' as _i3;
 
 import 'package:capoeirasport_project/core/common/result.dart' as _i4;
-import 'package:capoeirasport_project/core/exceptions/error.dart' as _i6;
+import 'package:capoeirasport_project/core/network/exceptions/error.dart'
+    as _i6;
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart'
     as _i5;
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/repos/news_repository.dart'
