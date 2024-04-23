@@ -1,6 +1,5 @@
 import 'package:capoeirasport_project/core/common/result.dart';
 import 'package:capoeirasport_project/core/common/usecase.dart';
-import 'package:capoeirasport_project/core/network/exceptions/error.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/repos/event_repository.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/usecases/get_event_list.dart';
@@ -17,7 +16,7 @@ void main() {
     const Event(id: 2, title: 'title2', imgUrl: 'imgUrl2'),
   ];
 
-  provideDummy<Result<List<Event>, Error>>(
+  provideDummy<Result<List<Event>, Exception>>(
     Success(value: fakeEventList),
   );
   test(

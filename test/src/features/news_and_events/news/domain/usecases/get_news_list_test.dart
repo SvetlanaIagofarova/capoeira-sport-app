@@ -1,6 +1,5 @@
 import 'package:capoeirasport_project/core/common/result.dart';
 import 'package:capoeirasport_project/core/common/usecase.dart';
-import 'package:capoeirasport_project/core/network/exceptions/error.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/repos/news_repository.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/usecases/get_news_list.dart';
@@ -16,7 +15,7 @@ void main() {
     const News(id: 1, title: 'title1', date: 'date1'),
     const News(id: 2, title: 'title2', date: 'date2'),
   ];
-  provideDummy<Result<List<News>, Error>>(
+  provideDummy<Result<List<News>, Exception>>(
     Success(value: fakeNewsList),
   );
   test(

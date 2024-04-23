@@ -1,8 +1,7 @@
 import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart';
 import 'package:capoeirasport_project/core/common/repository/common_remote_repository.dart';
 import 'package:capoeirasport_project/core/common/result.dart';
-import 'package:capoeirasport_project/core/network/exceptions/error.dart';
-import 'package:capoeirasport_project/core/network/exceptions/exception.dart';
+import 'package:capoeirasport_project/core/network/exceptions/exceptions.dart';
 import 'package:capoeirasport_project/core/network/network_info.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/models/event_model.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart';
@@ -20,7 +19,7 @@ class EventRepositoryImpl implements EventRepository {
   });
   
   @override
-  Future<Result<List<Event>, Error>> getEventList() async {
+  Future<Result<List<Event>, Exception>> getEventList() async {
     if (await networkInfo.isConnected) {
       try {
         final List<Event> remoteEventList = await remoteDataSource.getListOfThings();
@@ -28,7 +27,7 @@ class EventRepositoryImpl implements EventRepository {
         return Success(value: remoteEventList);
       } on ServerException {
         return Failure(
-          failure: ServerError(),
+          exception: ServerException(),
         );
       }
     } else {
@@ -37,7 +36,7 @@ class EventRepositoryImpl implements EventRepository {
         return Success(value: localEventList);
       } on CacheException {
         return Failure(
-          failure: CacheError(),
+          exception: CacheException(),
         );
       }
     }

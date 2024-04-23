@@ -6,14 +6,12 @@
 import 'dart:async' as _i3;
 
 import 'package:capoeirasport_project/core/common/result.dart' as _i4;
-import 'package:capoeirasport_project/core/network/exceptions/error.dart'
-    as _i6;
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart'
     as _i5;
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/repos/event_repository.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i7;
+import 'package:mockito/src/dummies.dart' as _i6;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -37,19 +35,19 @@ class MockEventRepository extends _i1.Mock implements _i2.EventRepository {
   }
 
   @override
-  _i3.Future<_i4.Result<List<_i5.Event>, _i6.Error>> getEventList() =>
+  _i3.Future<_i4.Result<List<_i5.Event>, Exception>> getEventList() =>
       (super.noSuchMethod(
         Invocation.method(
           #getEventList,
           [],
         ),
-        returnValue: _i3.Future<_i4.Result<List<_i5.Event>, _i6.Error>>.value(
-            _i7.dummyValue<_i4.Result<List<_i5.Event>, _i6.Error>>(
+        returnValue: _i3.Future<_i4.Result<List<_i5.Event>, Exception>>.value(
+            _i6.dummyValue<_i4.Result<List<_i5.Event>, Exception>>(
           this,
           Invocation.method(
             #getEventList,
             [],
           ),
         )),
-      ) as _i3.Future<_i4.Result<List<_i5.Event>, _i6.Error>>);
+      ) as _i3.Future<_i4.Result<List<_i5.Event>, Exception>>);
 }

@@ -1,8 +1,7 @@
 import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart';
 import 'package:capoeirasport_project/core/common/repository/common_remote_repository.dart';
 import 'package:capoeirasport_project/core/common/result.dart';
-import 'package:capoeirasport_project/core/network/exceptions/error.dart';
-import 'package:capoeirasport_project/core/network/exceptions/exception.dart';
+import 'package:capoeirasport_project/core/network/exceptions/exceptions.dart';
 import 'package:capoeirasport_project/core/network/network_info.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/models/event_model.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/repos/event_repository_impl.dart';
@@ -60,7 +59,7 @@ void main() {
           expect(
             result,
             equals(
-              const Success<List<Event>, Error>(value: fakeEventList),
+              const Success<List<Event>, Exception>(value: fakeEventList),
             ),
           );
         },
@@ -99,8 +98,8 @@ void main() {
           expect(
             result,
             equals(
-              Failure<List<Event>, Error>(
-                failure: ServerError(),
+              Failure<List<Event>, Exception>(
+                exception: ServerException(),
               ),
             ),
           );
@@ -132,7 +131,7 @@ void main() {
           expect(
             result,
             equals(
-              const Success<List<Event>, Error>(value: fakeEventList),
+              const Success<List<Event>, Exception>(value: fakeEventList),
             ),
           );
         },
@@ -154,8 +153,8 @@ void main() {
           expect(
             result,
             equals(
-              Failure<List<Event>, Error>(
-                failure: CacheError(),
+              Failure<List<Event>, Exception>(
+                exception: CacheException(),
               ),
             ),
           );

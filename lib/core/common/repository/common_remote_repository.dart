@@ -1,5 +1,5 @@
 import 'package:capoeirasport_project/core/common/repository/common_remote_methods.dart';
-import 'package:capoeirasport_project/core/network/exceptions/exception.dart';
+import 'package:capoeirasport_project/core/network/exceptions/exceptions.dart';
 import 'package:capoeirasport_project/core/network/dio_client.dart';
 import 'package:dio/dio.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:capoeirasport_project/core/network/dio_client.dart';
-import 'package:capoeirasport_project/core/network/exceptions/exception.dart';
+import 'package:capoeirasport_project/core/network/exceptions/exceptions.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/datasources/news_remote_data_source.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/models/news_model.dart';
 import 'package:flutter_test/flutter_test.dart';

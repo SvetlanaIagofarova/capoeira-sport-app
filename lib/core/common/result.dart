@@ -1,11 +1,10 @@
-import 'package:capoeirasport_project/core/network/exceptions/error.dart';
 import 'package:equatable/equatable.dart';
 
-sealed class Result<S, E extends Error> extends Equatable {
+sealed class Result<S, E extends Exception> extends Equatable {
   const Result();
 }
 
-final class Success<S, E extends Error> extends Result<S, E> {
+final class Success<S, E extends Exception> extends Result<S, E> {
   const Success({required this.value});
   final S value;
 
@@ -13,20 +12,20 @@ final class Success<S, E extends Error> extends Result<S, E> {
   List<Object?> get props => [];
 }
 
-final class Failure<S, E extends Error> extends Result<S, E> {
-  const Failure({required this.failure});
-  final Error failure;
+final class Failure<S, E extends Exception> extends Result<S, E> {
+  const Failure({required this.exception});
+  final Exception exception;
 
   @override
   List<Object?> get props => [];
 }
 
-extension ResultExtension on Result<dynamic, Error> {
+extension ResultExtension on Result<dynamic, Exception> {
   dynamic unwrap() {
     if (this is Success) {
       return (this as Success).value;
     } else {
-      throw (this as Failure).failure;
+      throw (this as Failure).exception;
     }
   }
 }

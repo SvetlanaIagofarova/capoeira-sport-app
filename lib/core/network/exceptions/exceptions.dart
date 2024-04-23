@@ -6,8 +6,8 @@ class ServerException implements Exception {
 
   ServerException();
 
-  ServerException.fromDioException(DioException dioEsception) {
-    switch (dioEsception.type) {
+  ServerException.fromDioException(DioException dioException) {
+    switch (dioException.type) {
       case DioExceptionType.cancel:
         errorMessage = ApiExceptionsConsts.exceptionCancel;
         break;
@@ -21,10 +21,10 @@ class ServerException implements Exception {
         errorMessage = ApiExceptionsConsts.exceptionSendTimeout;
         break;
       case DioExceptionType.badResponse:
-        errorMessage = _handleStatusCode(dioEsception.response?.statusCode);
+        errorMessage = _handleStatusCode(dioException.response?.statusCode);
         break;
       case DioExceptionType.unknown:
-        if (dioEsception.message!
+        if (dioException.message!
             .contains(ApiExceptionsConsts.socketException)) {
           errorMessage = ApiExceptionsConsts.exceptionNoInternet;
           break;
@@ -55,4 +55,6 @@ class ServerException implements Exception {
   String toString() => errorMessage;
 }
 
-class CacheException implements Exception {}
+class CacheException implements Exception {
+  final String errorMessage = ApiExceptionsConsts.exceptionUnknown;
+}
