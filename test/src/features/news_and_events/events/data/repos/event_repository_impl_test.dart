@@ -33,8 +33,8 @@ void main() {
   });
 
   const fakeEventListModel = <EventModel>[
-    EventModel(id: 1, title: 'title1', imgUrl: 'imgUrl1'),
-    EventModel(id: 2, title: 'title2', imgUrl: 'imgUrl2'),
+    EventModel(id: 1, title: 'title1', imgUrl: 'imgUrl1', url: 'url1'),
+    EventModel(id: 2, title: 'title2', imgUrl: 'imgUrl2', url: 'url2'),
   ];
   const List<Event> fakeEventList = fakeEventListModel;
   group(

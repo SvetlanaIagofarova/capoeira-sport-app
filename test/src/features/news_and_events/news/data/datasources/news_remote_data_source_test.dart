@@ -29,7 +29,7 @@ void main() {
         )
       ];
       const fakeNewsListModel = <NewsModel>[
-        NewsModel(id: 1, title: 'News Title', date: 'News Date'),
+        NewsModel(id: 1, title: 'News Title', date: 'News Date', url: 'News url'),
       ];
 
       test(

@@ -15,13 +15,16 @@ class News extends Equatable {
   @HiveField(2)
   @JsonKey(name: 'Date')
   final String date;
+  @HiveField(3)
+  final String url;
 
   const News({
     required this.id,
     required this.title,
     required this.date,
+    required this.url,
   });
 
   @override
-  List<Object?> get props => [id, title, date];
+  List<Object?> get props => [id, title, date, url];
 }

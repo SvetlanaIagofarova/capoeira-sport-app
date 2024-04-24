@@ -20,19 +20,22 @@ class EventAdapter extends TypeAdapter<Event> {
       id: fields[0] as int,
       title: fields[1] as String,
       imgUrl: fields[2] as String,
+      url: fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, Event obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
       ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.imgUrl);
+      ..write(obj.imgUrl)
+      ..writeByte(3)
+      ..write(obj.url);
   }
 
   @override

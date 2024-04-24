@@ -7,10 +7,7 @@ import '../../../../../../fixtures/fixture_reader.dart';
 
 void main() {
   const tNewsModel = EventModel(
-    id: 2,
-    title: 'Event Title',
-    imgUrl: 'Event imgUrl',
-  );
+      id: 2, title: 'Event Title', imgUrl: 'Event imgUrl', url: 'Event url');
 
   test(
     'should be a subclass of the Event entity',

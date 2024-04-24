@@ -14,8 +14,8 @@ void main() {
   late MockHiveService mockHiveService;
 
   const fakeNewsListModel = <NewsModel>[
-    NewsModel(id: 1, title: 'title1', date: 'date1'),
-    NewsModel(id: 2, title: 'title2', date: 'date2'),
+    NewsModel(id: 1, title: 'title1', date: 'date1', url: 'url1'),
+    NewsModel(id: 2, title: 'title2', date: 'date2',url: 'url2'),
   ];
 
   setUp(() {

@@ -20,8 +20,8 @@ void main() {
       late MockGetNewsList mockGetNewsList;
 
       final fakeNewsList = <News>[
-        const News(id: 1, title: 'title1', date: 'date1'),
-        const News(id: 2, title: 'title2', date: 'date2'),
+        const News(id: 1, title: 'title1', date: 'date1', url: 'url1'),
+        const News(id: 2, title: 'title2', date: 'date2', url: 'url2'),
       ];
       provideDummy<Result<List<News>, Exception>>(
         Success(value: fakeNewsList),

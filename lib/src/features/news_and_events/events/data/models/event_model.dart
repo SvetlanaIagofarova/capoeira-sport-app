@@ -9,6 +9,7 @@ class EventModel extends Event {
     required super.id,
     required super.title,
     required super.imgUrl,
+    required super.url,
   });
 
   factory EventModel.fromJson(Map<String, dynamic> json) =>

@@ -9,6 +9,7 @@ class NewsModel extends News {
     required super.id,
     required super.title,
     required super.date,
+    required super.url,
   });
 
   factory NewsModel.fromJson(Map<String, dynamic> json) =>

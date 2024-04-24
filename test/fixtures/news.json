@@ -1,5 +1,6 @@
 {
     "Id": 1,
     "Title": "News Title",
-    "Date": "News Date"
+    "Date": "News Date",
+    "url": "News url"
 }

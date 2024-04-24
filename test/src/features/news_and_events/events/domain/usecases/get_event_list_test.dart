@@ -12,8 +12,8 @@ import 'get_event_list_test.mocks.dart';
 @GenerateMocks([EventRepository])
 void main() {
   final fakeEventList = <Event>[
-    const Event(id: 1, title: 'title1', imgUrl: 'imgUrl1'),
-    const Event(id: 2, title: 'title2', imgUrl: 'imgUrl2'),
+    const Event(id: 1, title: 'title1', imgUrl: 'imgUrl1', url: 'url1'),
+    const Event(id: 2, title: 'title2', imgUrl: 'imgUrl2', url: 'url2'),
   ];
 
   provideDummy<Result<List<Event>, Exception>>(
