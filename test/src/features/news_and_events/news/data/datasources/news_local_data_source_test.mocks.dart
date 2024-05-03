@@ -3,11 +3,11 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:capoeirasport_project/core/utils/hive_service.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i3;
+import 'package:mockito/src/dummies.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -31,6 +31,26 @@ class MockHiveService extends _i1.Mock implements _i2.HiveService {
   }
 
   @override
+  _i3.Future<void> registerHiveAdapters() => (super.noSuchMethod(
+        Invocation.method(
+          #registerHiveAdapters,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+
+  @override
+  _i3.Future<void> initHive() => (super.noSuchMethod(
+        Invocation.method(
+          #initHive,
+          [],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+
+  @override
   List<T>? getAllThings<T>({required _i2.BoxType? boxType}) =>
       (super.noSuchMethod(Invocation.method(
         #getAllThings,
@@ -52,7 +72,7 @@ class MockHiveService extends _i1.Mock implements _i2.HiveService {
             #key: key,
           },
         ),
-        returnValue: _i3.dummyValue<T>(
+        returnValue: _i4.dummyValue<T>(
           this,
           Invocation.method(
             #getThing,
@@ -66,7 +86,7 @@ class MockHiveService extends _i1.Mock implements _i2.HiveService {
       ) as T);
 
   @override
-  _i4.Future<void> saveThings<T>({
+  _i3.Future<void> saveThings<T>({
     required _i2.BoxType? boxType,
     required List<T>? value,
   }) =>
@@ -79,12 +99,12 @@ class MockHiveService extends _i1.Mock implements _i2.HiveService {
             #value: value,
           },
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  _i4.Future<void> saveThing<T>({
+  _i3.Future<void> saveThing<T>({
     required _i2.BoxType? boxType,
     required Object? key,
     required T? value,
@@ -99,12 +119,12 @@ class MockHiveService extends _i1.Mock implements _i2.HiveService {
             #value: value,
           },
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 
   @override
-  _i4.Future<void> deleteThing<T>({
+  _i3.Future<void> deleteThing<T>({
     required _i2.BoxType? boxType,
     required Object? key,
   }) =>
@@ -117,7 +137,7 @@ class MockHiveService extends _i1.Mock implements _i2.HiveService {
             #key: key,
           },
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

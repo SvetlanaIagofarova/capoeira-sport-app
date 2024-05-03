@@ -1,8 +1,9 @@
-part of 'event_bloc.dart';
+import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart';
+import 'package:equatable/equatable.dart';
 
 sealed class EventState extends Equatable {
   const EventState();
-  
+
   @override
   List<Object> get props => [];
 }

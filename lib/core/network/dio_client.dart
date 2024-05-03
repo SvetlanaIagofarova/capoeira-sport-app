@@ -3,19 +3,16 @@ import 'package:capoeirasport_project/src/consts/api_path_consts.dart';
 import 'package:dio/dio.dart';
 
 class DioClient {
-  DioClient._();
-
-  static final DioClient _instance = DioClient._();
-
-  static DioClient get instance => _instance;
+  DioClient();
 
   final Dio _dio = Dio(
     BaseOptions(
-        baseUrl: ApiPathsConsts.baseUri,
-        connectTimeout: const Duration(seconds: 50),
-        receiveTimeout: const Duration(seconds: 50),
-        contentType: Headers.jsonContentType,
-        responseType: ResponseType.json),
+      baseUrl: ApiPathsConsts.baseUri,
+      connectTimeout: const Duration(seconds: 50),
+      receiveTimeout: const Duration(seconds: 50),
+      contentType: Headers.jsonContentType,
+      responseType: ResponseType.json,
+    ),
   );
 
   ///Get Method

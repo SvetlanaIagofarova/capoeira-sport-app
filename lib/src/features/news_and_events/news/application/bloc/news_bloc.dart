@@ -6,15 +6,17 @@ import 'package:capoeirasport_project/core/common/usecase.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/usecases/get_news_list.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
 part 'news_event.dart';
 part 'news_state.dart';
 
+@injectable
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final GetNewsList getNewsList;
 
   NewsBloc({
-    required this.getNewsList,
+    @Named.from(GetNewsList) required this.getNewsList,
   }) : super(NewsInitial()) {
     on<NewsLoadList>(_loadNewsListEventHandler);
   }

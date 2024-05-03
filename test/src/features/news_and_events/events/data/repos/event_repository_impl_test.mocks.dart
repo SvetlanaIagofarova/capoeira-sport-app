@@ -3,15 +3,17 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i6;
 
-import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart'
-    as _i6;
-import 'package:capoeirasport_project/core/common/repository/common_remote_repository.dart'
-    as _i4;
 import 'package:capoeirasport_project/core/network/dio_client.dart' as _i2;
-import 'package:capoeirasport_project/core/network/network_info.dart' as _i8;
-import 'package:capoeirasport_project/core/utils/hive_service.dart' as _i7;
+import 'package:capoeirasport_project/core/network/network_info.dart' as _i9;
+import 'package:capoeirasport_project/core/utils/hive_service.dart' as _i8;
+import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_local_data_source.dart'
+    as _i7;
+import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_remote_data_sources.dart'
+    as _i4;
+import 'package:capoeirasport_project/src/features/news_and_events/events/data/models/event_model.dart'
+    as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:mockito/src/dummies.dart' as _i5;
 
@@ -38,8 +40,8 @@ class _FakeDioClient_0 extends _i1.SmartFake implements _i2.DioClient {
         );
 }
 
-class _FakeFuture_1<T1> extends _i1.SmartFake implements _i3.Future<T1> {
-  _FakeFuture_1(
+class _FakeEventModel_1 extends _i1.SmartFake implements _i3.EventModel {
+  _FakeEventModel_1(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -48,23 +50,14 @@ class _FakeFuture_1<T1> extends _i1.SmartFake implements _i3.Future<T1> {
         );
 }
 
-/// A class which mocks [CommonRemoteRepository].
+/// A class which mocks [EventRemoteDataSourceImpl].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCommonRemoteRepository<T> extends _i1.Mock
-    implements _i4.CommonRemoteRepository<T> {
-  MockCommonRemoteRepository() {
+class MockEventRemoteDataSourceImpl extends _i1.Mock
+    implements _i4.EventRemoteDataSourceImpl {
+  MockEventRemoteDataSourceImpl() {
     _i1.throwOnMissingStub(this);
   }
-
-  @override
-  _i2.DioClient get client => (super.noSuchMethod(
-        Invocation.getter(#client),
-        returnValue: _FakeDioClient_0(
-          this,
-          Invocation.getter(#client),
-        ),
-      ) as _i2.DioClient);
 
   @override
   String get path => (super.noSuchMethod(
@@ -76,22 +69,31 @@ class MockCommonRemoteRepository<T> extends _i1.Mock
       ) as String);
 
   @override
-  T fromJson(Map<String, dynamic>? json) => (super.noSuchMethod(
+  _i2.DioClient get client => (super.noSuchMethod(
+        Invocation.getter(#client),
+        returnValue: _FakeDioClient_0(
+          this,
+          Invocation.getter(#client),
+        ),
+      ) as _i2.DioClient);
+
+  @override
+  _i3.EventModel fromJson(Map<String, dynamic>? json) => (super.noSuchMethod(
         Invocation.method(
           #fromJson,
           [json],
         ),
-        returnValue: _i5.dummyValue<T>(
+        returnValue: _FakeEventModel_1(
           this,
           Invocation.method(
             #fromJson,
             [json],
           ),
         ),
-      ) as T);
+      ) as _i3.EventModel);
 
   @override
-  Map<String, dynamic> toJson(T? body) => (super.noSuchMethod(
+  Map<String, dynamic> toJson(_i3.EventModel? body) => (super.noSuchMethod(
         Invocation.method(
           #toJson,
           [body],
@@ -100,74 +102,54 @@ class MockCommonRemoteRepository<T> extends _i1.Mock
       ) as Map<String, dynamic>);
 
   @override
-  _i3.Future<List<T>> getListOfThings() => (super.noSuchMethod(
+  _i6.Future<List<_i3.EventModel>> getListOfThings() => (super.noSuchMethod(
         Invocation.method(
           #getListOfThings,
           [],
         ),
-        returnValue: _i3.Future<List<T>>.value(<T>[]),
-      ) as _i3.Future<List<T>>);
+        returnValue: _i6.Future<List<_i3.EventModel>>.value(<_i3.EventModel>[]),
+      ) as _i6.Future<List<_i3.EventModel>>);
 
   @override
-  _i3.Future<T> getThing({required int? id}) => (super.noSuchMethod(
+  _i6.Future<_i3.EventModel> getThing({required int? id}) =>
+      (super.noSuchMethod(
         Invocation.method(
           #getThing,
           [],
           {#id: id},
         ),
-        returnValue: _i5.ifNotNull(
-              _i5.dummyValueOrNull<T>(
-                this,
-                Invocation.method(
-                  #getThing,
-                  [],
-                  {#id: id},
-                ),
-              ),
-              (T v) => _i3.Future<T>.value(v),
-            ) ??
-            _FakeFuture_1<T>(
-              this,
-              Invocation.method(
-                #getThing,
-                [],
-                {#id: id},
-              ),
-            ),
-      ) as _i3.Future<T>);
+        returnValue: _i6.Future<_i3.EventModel>.value(_FakeEventModel_1(
+          this,
+          Invocation.method(
+            #getThing,
+            [],
+            {#id: id},
+          ),
+        )),
+      ) as _i6.Future<_i3.EventModel>);
 
   @override
-  _i3.Future<T> postThing({required T? body}) => (super.noSuchMethod(
+  _i6.Future<_i3.EventModel> postThing({required _i3.EventModel? body}) =>
+      (super.noSuchMethod(
         Invocation.method(
           #postThing,
           [],
           {#body: body},
         ),
-        returnValue: _i5.ifNotNull(
-              _i5.dummyValueOrNull<T>(
-                this,
-                Invocation.method(
-                  #postThing,
-                  [],
-                  {#body: body},
-                ),
-              ),
-              (T v) => _i3.Future<T>.value(v),
-            ) ??
-            _FakeFuture_1<T>(
-              this,
-              Invocation.method(
-                #postThing,
-                [],
-                {#body: body},
-              ),
-            ),
-      ) as _i3.Future<T>);
+        returnValue: _i6.Future<_i3.EventModel>.value(_FakeEventModel_1(
+          this,
+          Invocation.method(
+            #postThing,
+            [],
+            {#body: body},
+          ),
+        )),
+      ) as _i6.Future<_i3.EventModel>);
 
   @override
-  _i3.Future<T> putThing({
+  _i6.Future<_i3.EventModel> putThing({
     required int? id,
-    required T? body,
+    required _i3.EventModel? body,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -178,92 +160,80 @@ class MockCommonRemoteRepository<T> extends _i1.Mock
             #body: body,
           },
         ),
-        returnValue: _i5.ifNotNull(
-              _i5.dummyValueOrNull<T>(
-                this,
-                Invocation.method(
-                  #putThing,
-                  [],
-                  {
-                    #id: id,
-                    #body: body,
-                  },
-                ),
-              ),
-              (T v) => _i3.Future<T>.value(v),
-            ) ??
-            _FakeFuture_1<T>(
-              this,
-              Invocation.method(
-                #putThing,
-                [],
-                {
-                  #id: id,
-                  #body: body,
-                },
-              ),
-            ),
-      ) as _i3.Future<T>);
+        returnValue: _i6.Future<_i3.EventModel>.value(_FakeEventModel_1(
+          this,
+          Invocation.method(
+            #putThing,
+            [],
+            {
+              #id: id,
+              #body: body,
+            },
+          ),
+        )),
+      ) as _i6.Future<_i3.EventModel>);
 
   @override
-  _i3.Future<void> deleteThing({required int? id}) => (super.noSuchMethod(
+  _i6.Future<void> deleteThing({required int? id}) => (super.noSuchMethod(
         Invocation.method(
           #deleteThing,
           [],
           {#id: id},
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 }
 
-/// A class which mocks [CommonLocalDataSource].
+/// A class which mocks [EventLocalDataSourceImpl].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCommonLocalDataSource<TypeModel> extends _i1.Mock
-    implements _i6.CommonLocalDataSource<TypeModel> {
-  MockCommonLocalDataSource() {
+class MockEventLocalDataSourceImpl extends _i1.Mock
+    implements _i7.EventLocalDataSourceImpl {
+  MockEventLocalDataSourceImpl() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i7.BoxType get boxType => (super.noSuchMethod(
+  _i8.BoxType get boxType => (super.noSuchMethod(
         Invocation.getter(#boxType),
-        returnValue: _i7.BoxType.newsList,
-      ) as _i7.BoxType);
+        returnValue: _i8.BoxType.newsList,
+      ) as _i8.BoxType);
 
   @override
-  _i3.Future<List<TypeModel>> getLastTypeModelList() => (super.noSuchMethod(
+  _i6.Future<List<_i3.EventModel>> getLastTypeModelList() =>
+      (super.noSuchMethod(
         Invocation.method(
           #getLastTypeModelList,
           [],
         ),
-        returnValue: _i3.Future<List<TypeModel>>.value(<TypeModel>[]),
-      ) as _i3.Future<List<TypeModel>>);
+        returnValue: _i6.Future<List<_i3.EventModel>>.value(<_i3.EventModel>[]),
+      ) as _i6.Future<List<_i3.EventModel>>);
 
   @override
-  _i3.Future<void> cacheTypeModelList(List<TypeModel>? typeModelListToCache) =>
+  _i6.Future<void> cacheTypeModelList(
+          List<_i3.EventModel>? typeModelListToCache) =>
       (super.noSuchMethod(
         Invocation.method(
           #cacheTypeModelList,
           [typeModelListToCache],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i6.Future<void>.value(),
+        returnValueForMissingStub: _i6.Future<void>.value(),
+      ) as _i6.Future<void>);
 }
 
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i8.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i9.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<bool> get isConnected => (super.noSuchMethod(
+  _i6.Future<bool> get isConnected => (super.noSuchMethod(
         Invocation.getter(#isConnected),
-        returnValue: _i3.Future<bool>.value(false),
-      ) as _i3.Future<bool>);
+        returnValue: _i6.Future<bool>.value(false),
+      ) as _i6.Future<bool>);
 }

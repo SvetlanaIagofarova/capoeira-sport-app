@@ -1,0 +1,11 @@
+{
+    "status": "Success",
+    "data": [
+        {
+            "Id": 1,
+            "Title": "News Title",
+            "Date": "News Date",
+            "url": "News url"
+        }
+    ]
+}

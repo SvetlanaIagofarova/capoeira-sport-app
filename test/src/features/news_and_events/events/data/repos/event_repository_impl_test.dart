@@ -1,8 +1,8 @@
-import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart';
-import 'package:capoeirasport_project/core/common/repository/common_remote_repository.dart';
 import 'package:capoeirasport_project/core/common/result.dart';
 import 'package:capoeirasport_project/core/network/exceptions/exceptions.dart';
 import 'package:capoeirasport_project/core/network/network_info.dart';
+import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_local_data_source.dart';
+import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_remote_data_sources.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/models/event_model.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/repos/event_repository_impl.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart';
@@ -12,18 +12,18 @@ import 'package:mockito/mockito.dart';
 
 import 'event_repository_impl_test.mocks.dart';
 
-@GenerateMocks([CommonRemoteRepository])
-@GenerateMocks([CommonLocalDataSource<Event>])
+@GenerateMocks([EventRemoteDataSourceImpl])
+@GenerateMocks([EventLocalDataSourceImpl])
 @GenerateMocks([NetworkInfo])
 void main() {
   late EventRepositoryImpl repository;
-  late CommonRemoteRepository<EventModel> mockEventRemoteDataSource;
-  late CommonLocalDataSource<Event> mockEventLocalDataSource;
+  late MockEventRemoteDataSourceImpl mockEventRemoteDataSource;
+  late MockEventLocalDataSourceImpl mockEventLocalDataSource;
   late NetworkInfo mockNetworkInfo;
 
   setUp(() {
-    mockEventRemoteDataSource = MockCommonRemoteRepository();
-    mockEventLocalDataSource = MockCommonLocalDataSource<Event>();
+    mockEventRemoteDataSource = MockEventRemoteDataSourceImpl();
+    mockEventLocalDataSource = MockEventLocalDataSourceImpl();
     mockNetworkInfo = MockNetworkInfo();
     repository = EventRepositoryImpl(
       remoteDataSource: mockEventRemoteDataSource,

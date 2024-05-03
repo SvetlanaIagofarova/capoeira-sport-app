@@ -1,20 +1,22 @@
-import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart';
-import 'package:capoeirasport_project/core/common/repository/common_remote_repository.dart';
 import 'package:capoeirasport_project/core/common/result.dart';
 import 'package:capoeirasport_project/core/network/exceptions/exceptions.dart';
 import 'package:capoeirasport_project/core/network/network_info.dart';
+import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_local_data_source.dart';
+import 'package:capoeirasport_project/src/features/news_and_events/events/data/datasources/event_remote_data_sources.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/data/models/event_model.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/entities/event.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/events/domain/repos/event_repository.dart';
+import 'package:injectable/injectable.dart';
 
+@Singleton(as: EventRepository)
 class EventRepositoryImpl implements EventRepository {
-  final CommonRemoteRepository<EventModel> remoteDataSource;
-  final CommonLocalDataSource<Event> localDataSource;
+  final EventRemoteDataSourceImpl remoteDataSource;
+  final EventLocalDataSourceImpl localDataSource;
   final NetworkInfo networkInfo;
 
   EventRepositoryImpl({
-    required this.remoteDataSource,
-    required this.localDataSource,
+    @Named.from(EventRemoteDataSourceImpl) required this.remoteDataSource,
+    @Named.from(EventLocalDataSourceImpl) required this.localDataSource,
     required this.networkInfo,
   });
   

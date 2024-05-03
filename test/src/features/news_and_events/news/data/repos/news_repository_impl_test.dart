@@ -1,8 +1,8 @@
-import 'package:capoeirasport_project/core/common/datasources/common_local_data_sources.dart';
-import 'package:capoeirasport_project/core/common/repository/common_remote_repository.dart';
 import 'package:capoeirasport_project/core/common/result.dart';
 import 'package:capoeirasport_project/core/network/exceptions/exceptions.dart';
 import 'package:capoeirasport_project/core/network/network_info.dart';
+import 'package:capoeirasport_project/src/features/news_and_events/news/data/datasources/news_local_data_source.dart';
+import 'package:capoeirasport_project/src/features/news_and_events/news/data/datasources/news_remote_data_source.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/models/news_model.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/repos/news_repository_impl.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart';
@@ -12,18 +12,18 @@ import 'package:mockito/mockito.dart';
 
 import 'news_repository_impl_test.mocks.dart';
 
-@GenerateMocks([CommonRemoteRepository<NewsModel>])
-@GenerateMocks([CommonLocalDataSource<News>])
+@GenerateMocks([NewsRemoteDataSourceImpl])
+@GenerateMocks([NewsLocalDataSourceImpl])
 @GenerateMocks([NetworkInfo])
 void main() {
   late NewsRepositoryImpl repository;
-  late MockCommonRemoteRepository<NewsModel> mockNewsRemoteDataSource;
-  late MockCommonLocalDataSource<News> mockNewsLocalDataSource;
+  late MockNewsRemoteDataSourceImpl mockNewsRemoteDataSource;
+  late MockNewsLocalDataSourceImpl mockNewsLocalDataSource;
   late MockNetworkInfo mockNetworkInfo;
 
   setUp(() {
-    mockNewsRemoteDataSource = MockCommonRemoteRepository<NewsModel>();
-    mockNewsLocalDataSource = MockCommonLocalDataSource();
+    mockNewsRemoteDataSource = MockNewsRemoteDataSourceImpl();
+    mockNewsLocalDataSource = MockNewsLocalDataSourceImpl();
     mockNetworkInfo = MockNetworkInfo();
     repository = NewsRepositoryImpl(
       remoteDataSource: mockNewsRemoteDataSource,

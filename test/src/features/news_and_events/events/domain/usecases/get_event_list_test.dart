@@ -19,6 +19,7 @@ void main() {
   provideDummy<Result<List<Event>, Exception>>(
     Success(value: fakeEventList),
   );
+
   test(
     'should get list of news from the repository',
     () async {

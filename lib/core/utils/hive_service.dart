@@ -3,28 +3,67 @@ import 'package:capoeirasport_project/src/features/news_and_events/events/domain
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+abstract interface class HiveService {
+  Future<void> registerHiveAdapters();
 
-class HiveService {
-  static final HiveService _instance = HiveService._internal();
-  factory HiveService() => _instance;
-  HiveService._internal();
+  Future<void> initHive();
+
+  List<T>? getAllThings<T>({
+    required BoxType boxType,
+  });
+
+  T getThing<T>({
+    required BoxType boxType,
+    required int key,
+  });
+
+  Future<void> saveThings<T>({
+    required BoxType boxType,
+    required List<T> value,
+  });
+
+  Future<void> saveThing<T>({
+    required BoxType boxType,
+    required Object key,
+    required T value,
+  });
+
+  Future<void> deleteThing<T>({
+    required BoxType boxType,
+    required Object key,
+  });
+}
+
+class HiveServiceImpl implements HiveService {
+  const HiveServiceImpl();
 
   static late final Map<BoxType, Box<dynamic>> boxes;
 
-  static Future<void> initHive() async {
-    await _registerHiveAdapters();
+  
+  @override
+  Future<void> registerHiveAdapters() async {
+    await Hive.initFlutter();
+    Hive
+      ..registerAdapter(NewsAdapter())
+      ..registerAdapter(EventAdapter());
+  }
+
+  @override
+  Future<void> initHive() async {
+    await registerHiveAdapters();
 
     boxes = <BoxType, Box<dynamic>>{
       BoxType.newsList: await Hive.openBox(HiveConsts.newsListBox),
-      BoxType.eventList:
-          await Hive.openBox(HiveConsts.eventListBox),
+      BoxType.eventList: await Hive.openBox(HiveConsts.eventListBox),
     };
   }
 
+  @override
   List<T>? getAllThings<T>({required BoxType boxType}) {
     return boxes[boxType]?.values.map((v) => v as T).toList();
   }
 
+  @override
   T getThing<T>({
     required BoxType boxType,
     required int key,
@@ -32,6 +71,7 @@ class HiveService {
     return boxes[boxType]?.get(key) as T;
   }
 
+  @override
   Future<void> saveThings<T>({
     required BoxType boxType,
     required List<T> value,
@@ -41,6 +81,7 @@ class HiveService {
     return await boxes[boxType]?.putAll(map);
   }
 
+  @override
   Future<void> saveThing<T>({
     required BoxType boxType,
     required Object key,
@@ -49,19 +90,11 @@ class HiveService {
     return await boxes[boxType]?.put(key, value);
   }
 
-  Future<void> deleteThing<T>({
-    required BoxType boxType,
-    required Object key
-  }) async {
+  @override
+  Future<void> deleteThing<T>(
+      {required BoxType boxType, required Object key}) async {
     return await boxes[boxType]?.delete(key);
   }
-}
-
-Future<void> _registerHiveAdapters() async {
-  await Hive.initFlutter();
-  Hive
-    ..registerAdapter(NewsAdapter())
-    ..registerAdapter(EventAdapter());
 }
 
 enum BoxType {

@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'news_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(explicitToJson: true)
 class NewsModel extends News {
   const NewsModel({
     required super.id,
