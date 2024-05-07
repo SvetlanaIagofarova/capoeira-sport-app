@@ -1,13 +1,13 @@
-[{
+{
     "result": {
         "status": "Success",
-        "data": [
-            {
+        "data": {
+            "1": {
                 "Id": 1,
                 "Title": "News Title",
                 "Date": "News Date",
                 "url": "News url"
             }
-        ]
+        }
     }
-}]
+}

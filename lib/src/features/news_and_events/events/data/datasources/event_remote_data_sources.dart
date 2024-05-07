@@ -16,4 +16,8 @@ class EventRemoteDataSourceImpl extends CommonRemoteRepository<EventModel> {
 
   @override
   String get path => ApiPathsConsts.eventListPath;
+
+  @override
+  List<EventModel> getResult(data) =>
+      (data as List).map((e) => fromJson(e)).toList();
 }

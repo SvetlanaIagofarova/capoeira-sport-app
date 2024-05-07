@@ -15,10 +15,12 @@ void main() {
   late NewsRemoteDataSourceImpl dataSource;
   late MockDioClient mockDioClient;
 
-  setUp(() {
-    mockDioClient = MockDioClient();
-    dataSource = NewsRemoteDataSourceImpl(client: mockDioClient);
-  });
+  setUp(
+    () {
+      mockDioClient = MockDioClient();
+      dataSource = NewsRemoteDataSourceImpl(client: mockDioClient);
+    },
+  );
 
   group(
     'getNewsList',
@@ -29,7 +31,8 @@ void main() {
         )
       ];
       const fakeNewsListModel = <NewsModel>[
-        NewsModel(id: 1, title: 'News Title', date: 'News Date', url: 'News url'),
+        NewsModel(
+            id: 1, title: 'News Title', date: 'News Date', url: 'News url'),
       ];
 
       test(
@@ -60,8 +63,8 @@ void main() {
           ).thenThrow(ServerException());
 
           // act
-          final call = dataSource.getListOfThings; 
-          
+          final call = dataSource.getListOfThings;
+
           // assert
           expect(
             () => call(),

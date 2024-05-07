@@ -3,7 +3,6 @@ import 'package:capoeirasport_project/src/consts/api_path_consts.dart';
 import 'package:capoeirasport_project/src/features/news_and_events/news/data/models/news_model.dart';
 import 'package:injectable/injectable.dart';
 
-
 @named
 @Singleton(as: CommonRemoteRepository)
 class NewsRemoteDataSourceImpl extends CommonRemoteRepository<NewsModel> {
@@ -17,4 +16,8 @@ class NewsRemoteDataSourceImpl extends CommonRemoteRepository<NewsModel> {
 
   @override
   String get path => ApiPathsConsts.newsListPath;
+
+  @override
+  List<NewsModel> getResult(data) =>
+      (data as List).map((e) => fromJson(e)).toList();
 }

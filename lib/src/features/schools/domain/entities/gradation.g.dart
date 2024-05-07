@@ -1,35 +1,35 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'event_result.dart';
+part of 'gradation.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class EventResultAdapter extends TypeAdapter<EventResult> {
+class GradationAdapter extends TypeAdapter<Gradation> {
   @override
-  final int typeId = 3;
+  final int typeId = 6;
 
   @override
-  EventResult read(BinaryReader reader) {
+  Gradation read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return EventResult(
-      status: fields[0] as String,
-      data: (fields[1] as List).cast<Event>(),
+    return Gradation(
+      name: fields[0] as String,
+      colors: (fields[1] as Map).cast<String, GradationColors>(),
     );
   }
 
   @override
-  void write(BinaryWriter writer, EventResult obj) {
+  void write(BinaryWriter writer, Gradation obj) {
     writer
       ..writeByte(2)
       ..writeByte(0)
-      ..write(obj.status)
+      ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.data);
+      ..write(obj.colors);
   }
 
   @override
@@ -38,7 +38,7 @@ class EventResultAdapter extends TypeAdapter<EventResult> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is EventResultAdapter &&
+      other is GradationAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

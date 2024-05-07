@@ -15,13 +15,25 @@ abstract class CommonRemoteRepository<T>
 
   String get path;
 
+  List<T> getResult(dynamic data);
+
   @override
   Future<List<T>> getListOfThings() async {
     try {
       final response = await client.get(
         path,
       );
-      return (response as List).map((e) => fromJson(e)).toList();
+      final data = (response as List)[0]["result"]["data"];
+
+      return getResult(data);
+
+      //! for the json with map
+      // var list = [];
+      // for (var i = 1; data.containsKey(i.toString()); i++) {
+      //   list.add(data[i.toString()]);
+      // }
+      // final result = list.map((e) => fromJson(e)).toList();
+      // return result;
     } on DioException catch (e) {
       var error = ServerException.fromDioException(e);
       throw error.errorMessage;

@@ -1,41 +1,38 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'news_result.dart';
+part of 'school.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class NewsResultAdapter extends TypeAdapter<NewsResult> {
+class SchoolAdapter extends TypeAdapter<School> {
   @override
-  final int typeId = 1;
+  final int typeId = 5;
 
   @override
-  NewsResult read(BinaryReader reader) {
+  School read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return NewsResult(
-      status: fields[0] as String,
-      data: (fields[1] as List).cast<News>(),
+    return School(
+      id: fields[0] as int,
+      name: fields[1] as String,
+      gradation: (fields[2] as Map).cast<String, Gradation>(),
     );
   }
 
-  /*
-loc: json['loc'] == null
-        ? null
-        : LocModel.fromJson(json['loc'] as Map<String, dynamic>),
-  */
-
   @override
-  void write(BinaryWriter writer, NewsResult obj) {
+  void write(BinaryWriter writer, School obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.status)
+      ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.data);
+      ..write(obj.name)
+      ..writeByte(2)
+      ..write(obj.gradation);
   }
 
   @override
@@ -44,7 +41,7 @@ loc: json['loc'] == null
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is NewsResultAdapter &&
+      other is SchoolAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
