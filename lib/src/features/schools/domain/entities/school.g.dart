@@ -8,7 +8,7 @@ part of 'school.dart';
 
 class SchoolAdapter extends TypeAdapter<School> {
   @override
-  final int typeId = 5;
+  final int typeId = 2;
 
   @override
   School read(BinaryReader reader) {

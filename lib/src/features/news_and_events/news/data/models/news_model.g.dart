@@ -7,7 +7,7 @@ part of 'news_model.dart';
 // **************************************************************************
 
 NewsModel _$NewsModelFromJson(Map<String, dynamic> json) => NewsModel(
-      id: json['Id'] as int,
+      id: (json['Id'] as num).toInt(),
       title: json['Title'] as String,
       date: json['Date'] as String,
       url: json['url'] as String,

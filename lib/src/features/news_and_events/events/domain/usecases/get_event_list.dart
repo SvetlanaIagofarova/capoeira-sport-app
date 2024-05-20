@@ -5,7 +5,7 @@ import 'package:capoeirasport_project/src/features/news_and_events/events/domain
 import 'package:injectable/injectable.dart';
 
 @named
-@Singleton(as: UseCase)
+@Singleton(as: UseCase<List<Event>, NoParams>)
 final class GetEventList implements UseCase<List<Event>, NoParams> {
   final EventRepository _repository;
 

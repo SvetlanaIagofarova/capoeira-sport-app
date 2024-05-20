@@ -102,6 +102,15 @@ class MockNewsRemoteDataSourceImpl extends _i1.Mock
       ) as Map<String, dynamic>);
 
   @override
+  List<_i3.NewsModel> getResult(dynamic data) => (super.noSuchMethod(
+        Invocation.method(
+          #getResult,
+          [data],
+        ),
+        returnValue: <_i3.NewsModel>[],
+      ) as List<_i3.NewsModel>);
+
+  @override
   _i6.Future<List<_i3.NewsModel>> getListOfThings() => (super.noSuchMethod(
         Invocation.method(
           #getListOfThings,

@@ -102,6 +102,15 @@ class MockEventRemoteDataSourceImpl extends _i1.Mock
       ) as Map<String, dynamic>);
 
   @override
+  List<_i3.EventModel> getResult(dynamic data) => (super.noSuchMethod(
+        Invocation.method(
+          #getResult,
+          [data],
+        ),
+        returnValue: <_i3.EventModel>[],
+      ) as List<_i3.EventModel>);
+
+  @override
   _i6.Future<List<_i3.EventModel>> getListOfThings() => (super.noSuchMethod(
         Invocation.method(
           #getListOfThings,

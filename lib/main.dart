@@ -13,7 +13,7 @@
 // }
 
 import 'package:capoeirasport_project/injection.dart';
-import 'package:capoeirasport_project/src/features/capoeirasportapp/application/screens/capoeirs_sport_app.dart';
+import 'package:capoeirasport_project/src/features/capoeirasportapp/application/widgets/capoeirs_sport_app.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {

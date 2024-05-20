@@ -4,7 +4,7 @@ import 'package:capoeirasport_project/src/features/news_and_events/news/data/mod
 import 'package:injectable/injectable.dart';
 
 @named
-@Singleton(as: CommonLocalDataSource)
+@Singleton(as: CommonLocalDataSource<NewsModel>)
 class NewsLocalDataSourceImpl
     extends CommonLocalDataSource<NewsModel> {
   NewsLocalDataSourceImpl({required super.hiveService});

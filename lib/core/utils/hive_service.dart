@@ -3,6 +3,9 @@ import 'package:capoeirasport_project/src/features/news_and_events/events/domain
 import 'package:capoeirasport_project/src/features/news_and_events/news/domain/entities/news.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+
+//!
+//the last HiveType is 4
 abstract interface class HiveService {
   Future<void> registerHiveAdapters();
 

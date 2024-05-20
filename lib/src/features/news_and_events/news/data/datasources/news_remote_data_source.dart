@@ -4,7 +4,7 @@ import 'package:capoeirasport_project/src/features/news_and_events/news/data/mod
 import 'package:injectable/injectable.dart';
 
 @named
-@Singleton(as: CommonRemoteRepository)
+@Singleton(as: CommonRemoteRepository<NewsModel>)
 class NewsRemoteDataSourceImpl extends CommonRemoteRepository<NewsModel> {
   NewsRemoteDataSourceImpl({required super.client});
 

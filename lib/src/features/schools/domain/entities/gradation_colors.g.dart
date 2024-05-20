@@ -8,7 +8,7 @@ part of 'gradation_colors.dart';
 
 class GradationColorsAdapter extends TypeAdapter<GradationColors> {
   @override
-  final int typeId = 7;
+  final int typeId = 4;
 
   @override
   GradationColors read(BinaryReader reader) {

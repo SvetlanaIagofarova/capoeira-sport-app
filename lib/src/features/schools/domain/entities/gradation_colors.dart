@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'gradation_colors.g.dart';
 
-@HiveType(typeId: 7)
+@HiveType(typeId: 4)
 class GradationColors extends Equatable {
   @HiveField(0)
   @JsonKey(name: 'c1')

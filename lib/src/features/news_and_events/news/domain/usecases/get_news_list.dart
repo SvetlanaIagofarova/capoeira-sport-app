@@ -5,7 +5,7 @@ import 'package:capoeirasport_project/src/features/news_and_events/news/domain/r
 import 'package:injectable/injectable.dart';
 
 @named
-@Singleton(as: UseCase)
+@Singleton(as: UseCase<List<News>, NoParams>)
 class GetNewsList implements UseCase<List<News>, NoParams> {
   final NewsRepository repository;
 

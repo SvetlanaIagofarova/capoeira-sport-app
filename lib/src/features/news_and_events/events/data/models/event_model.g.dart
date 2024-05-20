@@ -7,7 +7,7 @@ part of 'event_model.dart';
 // **************************************************************************
 
 EventModel _$EventModelFromJson(Map<String, dynamic> json) => EventModel(
-      id: json['Id'] as int,
+      id: (json['Id'] as num).toInt(),
       title: json['Title'] as String,
       imgUrl: json['imgUrl'] as String,
       url: json['url'] as String,

@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'event.g.dart';
 
-@HiveType(typeId: 2)
+@HiveType(typeId: 1)
 class Event extends Equatable {
   @HiveField(0)
   @JsonKey(name: 'Id')
