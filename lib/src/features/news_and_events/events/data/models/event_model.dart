@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'event_model.g.dart';
 
-@JsonSerializable(explicitToJson: true)
+@JsonSerializable()
 class EventModel extends Event {
   const EventModel({
     required super.id,

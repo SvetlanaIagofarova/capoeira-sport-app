@@ -15,11 +15,11 @@ class GradationColors extends Equatable {
   final String c2;
 
   @HiveField(2)
-  @JsonKey(name: 'c2')
+  @JsonKey(name: 'c3')
   final String c3;
 
   @HiveField(3)
-  @JsonKey(name: 'c3')
+  @JsonKey(name: 'c4')
   final String c4;
 
   @HiveField(4)
